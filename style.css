@@ -1,0 +1,178 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.camera-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#videoInput {
+    width: 100%;
+    max-width: 640px;
+    border: 3px solid #3498db;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    /* REMOVED MIRROR EFFECT - NORMAL NA BACK CAMERA */
+}
+
+#canvasOutput {
+    display: none;
+}
+
+.camera-selection {
+    text-align: center;
+    margin: 15px 0;
+}
+
+#cameraSelect {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #3498db;
+    font-size: 14px;
+}
+
+.controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 0 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn.active {
+    background: #e74c3c;
+}
+
+.calibration {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    text-align: center;
+    border: 1px solid #ffeaa7;
+}
+
+.calibration h3 {
+    margin-top: 0;
+    color: #856404;
+}
+
+.calibration label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#refWidth {
+    padding: 8px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    width: 80px;
+    text-align: center;
+}
+
+#calibrationStatus {
+    font-style: italic;
+    margin: 10px 0 0 0;
+    color: #666;
+}
+
+.results {
+    background: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.results h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    text-align: center;
+}
+
+.results p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #34495e;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    background: white;
+}
+
+#status {
+    text-align: center;
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+.detecting {
+    background: #d4edda !important;
+    color: #155724 !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+        padding: 15px;
+    }
+    
+    .controls {
+        margin: 10px 0;
+    }
+    
+    .results p {
+        font-size: 14px;
+    }
+}

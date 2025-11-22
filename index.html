@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Lumber Estimator - Web Version</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌳 Tree Lumber Estimator</h1>
+        
+        <!-- Camera Section -->
+        <div class="camera-container">
+            <video id="videoInput" autoplay playsinline></video>
+            <canvas id="canvasOutput"></canvas>
+        </div>
+        
+        <!-- Camera Selection -->
+        <div class="camera-selection">
+            <label for="cameraSelect">Select Camera: </label>
+            <select id="cameraSelect">
+                <option value="environment">Back Camera</option>
+                <option value="user">Front Camera</option>
+            </select>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <button id="startBtn" class="btn">🎥 Start Camera</button>
+            <button id="toggleDetectBtn" class="btn">🔴 Stop Real-time</button>
+            <button id="stopBtn" class="btn">⏹️ Stop Camera</button>
+        </div>
+        
+        <!-- Calibration -->
+        <div class="calibration">
+            <h3>🎯 Calibration</h3>
+            <label>Reference Object Width (cm): </label>
+            <input type="number" id="refWidth" value="10.0" step="0.1" min="1" max="100">
+            <button id="calibrateBtn" class="btn">Calibrate</button>
+            <p id="calibrationStatus">Not calibrated</p>
+        </div>
+        
+        <!-- Results -->
+        <div class="results">
+            <h3>📊 Real-time Results:</h3>
+            <p id="diameterResult">Diameter: -- cm</p>
+            <p id="heightResult">Height: -- cm</p>
+            <p id="volumeResult">Volume: -- cm³</p>
+            <p id="lumberResult">Lumber Estimate: -- pieces</p>
+            <p id="status">Status: Camera off</p>
+        </div>
+    </div>
+
+    <!-- Include OpenCV.js -->
+    <script async src="https://docs.opencv.org/master/opencv.js" onload="onOpenCvReady();"></script>
+    <script src="app.js"></script>
+</body>
+</html>
