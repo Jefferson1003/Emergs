@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tree Lumber Estimator - Real-time & Image Upload</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌳 Coco Lumber Estimator</h1>
+        
+        <!-- Mode Selection -->
+        <div class="mode-selection">
+            <button id="realtimeMode" class="mode-btn active">📷 Real-time Camera</button>
+            <button id="uploadMode" class="mode-btn">📁 Upload Image</button>
+        </div>
+        
+        <!-- Real-time Camera Section -->
+        <div id="realtimeSection" class="section active">
+            <!-- Camera Section -->
+            <div class="camera-container">
+                <div class="video-wrapper">
+                    <video id="videoInput" autoplay playsinline muted></video>
+                    <canvas id="canvasOutput"></canvas>
+                    <div id="detectionOverlay"></div>
+                    <div id="cameraFeedback" class="camera-feedback"></div>
+                </div>
+            </div>
+            
+            <!-- Camera Selection - Hidden on mobile -->
+            <div class="camera-selection mobile-hidden">
+                <label for="cameraSelect">Select Camera: </label>
+                <select id="cameraSelect">
+                    <option value="environment">Back Camera</option>
+                    <option value="user">Front Camera</option>
+                </select>
+            </div>
+            
+            <!-- Controls -->
+            <div class="controls">
+                <button id="startBtn" class="btn primary">🎥 Start Camera</button>
+                <button id="toggleDetectBtn" class="btn secondary">🟢 Start Detection</button>
+                <button id="stopBtn" class="btn danger">⏹️ Stop Camera</button>
+            </div>
+            
+            <!-- Mobile Instructions -->
+            <div class="mobile-instructions">
+                <h3>📱 Mobile Instructions:</h3>
+                <ol>
+                    <li>Tap "Start Camera" and allow camera access</li>
+                    <li>Point camera at coconut tree trunk</li>
+                    <li>Tap "Start Detection" for real-time measurement</li>
+                    <li>For accuracy: Use "Calibrate" with known object</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Image Upload Section -->
+        <div id="uploadSection" class="section">
+            <div class="upload-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <span class="upload-icon">📁</span>
+                        <h3>Upload Coconut Tree Image</h3>
+                        <p>Click here or drag & drop your image</p>
+                        <p class="upload-note">Supports: JPG, PNG, WebP (Max: 5MB)</p>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                </div>
+                
+                <div class="upload-preview" id="uploadPreview">
+                    <img id="previewImage" src="" alt="Preview">
+                    <button id="removeImage" class="btn danger">🗑 Remove Image</button>
+                </div>
+                
+                <div class="upload-controls">
+                    <button id="analyzeBtn" class="btn primary" disabled>🔍 Analyze Image</button>
+                    <button id="calibrateUploadBtn" class="btn">🎯 Calibrate Upload</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Calibration Section (Shared) -->
+        <div class="calibration">
+            <h3>🎯 Calibration</h3>
+            <div class="calibration-inputs">
+                <label>Reference Width (cm): </label>
+                <input type="number" id="refWidth" value="10.0" step="0.1" min="1" max="100">
+                <button id="calibrateBtn" class="btn">Calibrate Camera</button>
+            </div>
+            <p id="calibrationStatus">Not calibrated - Calibrate for accurate measurements</p>
+        </div>
+        
+        <!-- Results Section (Shared) -->
+        <div class="results">
+            <h3>📊 Measurement Results:</h3>
+            <div class="result-grid">
+                <div class="result-item">
+                    <span class="result-label">Diameter:</span>
+                    <span id="diameterResult">-- cm</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Height:</span>
+                    <span id="heightResult">-- cm</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Volume:</span>
+                    <span id="volumeResult">-- cm³</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Weight:</span>
+                    <span id="weightResult">-- kg</span>
+                </div>
+                <div class="result-item highlight">
+                    <span class="result-label">Coco Lumber Pieces:</span>
+                    <span id="lumberResult">-- pieces</span>
+                </div>
+            </div>
+            <div class="detection-quality">
+                <span class="quality-label">Detection Quality:</span>
+                <span id="qualityResult">--</span>
+            </div>
+            <p id="status">Status: Select mode to start</p>
+        </div>
+
+        <!-- Detection Info -->
+        <div class="detection-info">
+            <h3>🔍 Detection Information</h3>
+            <p id="detectionInfo">No tree detected</p>
+        </div>
+    </div>
+
+    <!-- Include OpenCV.js -->
+    <script async src="https://docs.opencv.org/master/opencv.js" onload="onOpenCvReady();"></script>
+    <script src="app.js"></script>
+</body>
+</html>
